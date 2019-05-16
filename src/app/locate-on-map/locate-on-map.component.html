@@ -1,0 +1,53 @@
+<!-- <div *ngIf="!mapLoadingError" class='map-wrapper'>
+    <div id='map-canvas2'>
+        <div id="map" #map></div>
+    </div>
+    <div id='over'>
+        <div>
+            <input class="auto-complete" type="text" #mapAutoCompleteSerch>
+        </div>
+    </div>
+    <div id="over_2" *ngIf="photos && photos.length > 0">
+        <div class="photo-gallery">
+            <div *ngFor="let photo of photos" class="photo-cover" (click)="navigateToImageDetail(photo.map)">
+                <img height="200px" width="300px" [attr.src]="photo.image">
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- <div *ngIf="mapLoadingError">
+    <div>Error Occurred: Please check below</div>
+    <ul>
+        <li *ngFor="let error of mapLoadingError"> {{ error }} </li>
+    </ul>
+</div> -->
+<div class='map-wrapper' #parentComponent>
+    <form style="background: #fff;box-shadow: 0 2px 3px rgba(0,0,0,.16);height: 48px;display: flex;justify-content: space-between;">
+        <div style="top: 15px;position: relative;padding-left: 10px;width: 100%;">
+            <input type="text" #mapAutoCompleteSerch style="font-size: 16px;
+            border: 1px solid #fff;
+            float: left;
+            width: 97%;
+            background: #fff;
+            color: #191919;">
+        </div>
+        <div *ngIf="mapConfig.displayMoreOption">
+            <img [src]="appLogo" width="30px" height="30px" style="margin-top: 10px;
+            margin-right: 10px;cursor: pointer;" (click)="onToggleOptions()">
+        </div>
+    </form>
+    <div style="width: 100%;height: 100%;display: flex">
+        <div *ngIf="toggleOptions.explore_photos" class="photo-gallery">
+            <div *ngFor="let photo of photos" class="photo-cover" (click)="navigateToImageDetail(photo.map)">
+                <img height="200px" width="300px" [attr.src]="photo.image">
+            </div>
+            <div *ngIf="photos.length === 0" class="photo-cover" style="margin: auto; font-family: Arial">
+                {{ 'No photo available'}}              
+            </div>
+        </div>
+        <div id="map" #map></div>
+    </div>
+    <div class="form-popup" id="myForm" [ngStyle]="{display: !toggleOption ? 'none' : 'block'}">
+        <div *ngFor="let option of moreOptions" [ngStyle]="{fontWeight: toggleOptions[option.toLowerCase().replace(' ', '_')] ? 'bold' : 'normal'}" class="popup-menu" (click)="toggleOptionContent(option)"> {{ option }} </div>
+    </div>
+</div>
